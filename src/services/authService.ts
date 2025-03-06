@@ -2,8 +2,9 @@
 import axios from 'axios';
 import { RegisterDto, LoginDto, TokenDto } from '../types/auth';
 
-const API_URL = 'http://localhost:5000/api/auth'; // Match your Kestrel HTTP endpoint
+const API_URL = 'https://localhost:5001/api/Auth'; // Match your Kestrel HTTP endpoint
 
+// const register_url = 'https://localhost:5001/api/Auth/register';
 export const register = async (data: RegisterDto): Promise<any> => {
   const response = await axios.post(`${API_URL}/register`, data);
   return response.data;

@@ -8,8 +8,14 @@ const Register: React.FC = () => {
     username: '',
     email: '',
     password: '',
+    phoneNumber: '',
+    country: '',
+    city: '',
+    state: '',
+    address: '',
     role: 'User',
   });
+
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
@@ -20,6 +26,7 @@ const Register: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      // debugger; // <-- This will pause execution in DevTools
       const response = await register(formData);
       setSuccess(`User ${response.username} registered successfully!`);
       setError(null);
@@ -61,6 +68,56 @@ const Register: React.FC = () => {
             type="password"
             name="password"
             value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>phoneNumber:</label>
+          <input
+            type="text"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>country:</label>
+          <input
+            type="text"
+            name="country"
+            value={formData.country}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>city:</label>
+          <input
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>state:</label>
+          <input
+            type="text"
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>address:</label>
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
             onChange={handleChange}
             required
           />

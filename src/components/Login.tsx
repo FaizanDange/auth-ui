@@ -12,9 +12,12 @@ const Login: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+ 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      debugger; // <-- This will pause execution in DevTools
       const response = await login(formData);
       setToken(response.accessToken);
       localStorage.setItem('accessToken', response.accessToken);
@@ -25,6 +28,7 @@ const Login: React.FC = () => {
       setError(err.response?.data || 'Login failed');
     }
   };
+  console.log(formData)
 
   return (
     <div>
