@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { register } from '../services/authService';
 import { RegisterDto } from '../types/auth';
+import '../styles/register.css';
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState<RegisterDto>({
@@ -26,7 +27,6 @@ const Register: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // debugger; // <-- This will pause execution in DevTools
       const response = await register(formData);
       setSuccess(`User ${response.username} registered successfully!`);
       setError(null);
@@ -37,99 +37,61 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="register-container">
+      <form className="register-form" onSubmit={handleSubmit}>
+        <h2>Register</h2>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {success && <p style={{ color: 'green' }}>{success}</p>}
+
+        <div className="form-group">
           <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
+          <input type="text" name="username" value={formData.username} onChange={handleChange} required />
         </div>
-        <div>
+
+        <div className="form-group">
           <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
         </div>
-        <div>
+
+        <div className="form-group">
           <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
+          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
         </div>
-        <div>
-          <label>phoneNumber:</label>
-          <input
-            type="text"
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-            required
-          />
+
+        <div className="form-group">
+          <label>Phone Number:</label>
+          <input type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
         </div>
-        <div>
-          <label>country:</label>
-          <input
-            type="text"
-            name="country"
-            value={formData.country}
-            onChange={handleChange}
-            required
-          />
+
+        <div className="form-group">
+          <label>Country:</label>
+          <input type="text" name="country" value={formData.country} onChange={handleChange} required />
         </div>
-        <div>
-          <label>city:</label>
-          <input
-            type="text"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-            required
-          />
+
+        <div className="form-group">
+          <label>City:</label>
+          <input type="text" name="city" value={formData.city} onChange={handleChange} required />
         </div>
-        <div>
-          <label>state:</label>
-          <input
-            type="text"
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-            required
-          />
+
+        <div className="form-group">
+          <label>State:</label>
+          <input type="text" name="state" value={formData.state} onChange={handleChange} required />
         </div>
-        <div>
-          <label>address:</label>
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            required
-          />
+
+        <div className="form-group">
+          <label>Address:</label>
+          <input type="text" name="address" value={formData.address} onChange={handleChange} required />
         </div>
-        <div>
+
+        <div className="form-group">
           <label>Role:</label>
           <select name="role" value={formData.role} onChange={handleChange}>
             <option value="User">User</option>
             <option value="Admin">Admin</option>
           </select>
         </div>
-        <button type="submit">Register</button>
+
+        <button type="submit" className="register-button">Register</button>
       </form>
     </div>
   );
