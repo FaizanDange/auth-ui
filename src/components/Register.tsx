@@ -1,5 +1,5 @@
-// src/components/Register.tsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { register } from '../services/authService';
 import { RegisterDto } from '../types/auth';
 import '../styles/register.css';
@@ -19,6 +19,7 @@ const Register: React.FC = () => {
 
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const navigate = useNavigate(); // ✅ Hook for navigation
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,6 +31,11 @@ const Register: React.FC = () => {
       const response = await register(formData);
       setSuccess(`User ${response.username} registered successfully!`);
       setError(null);
+
+      // ✅ Redirect to login page after successful registration
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000); // 2-second delay for better UX
     } catch (err: any) {
       setError(err.response?.data || 'Registration failed');
       setSuccess(null);
